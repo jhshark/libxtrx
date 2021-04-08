@@ -5,6 +5,7 @@
 static SoapySDR::KwargsList findIConnection(const SoapySDR::Kwargs &matchArgs)
 {
     SoapySDR::KwargsList results;
+    SoapySDR::KwargsList results2;
 
 	xtrx_device_info_t devs[64];
 	int res = xtrx_discovery(devs, 64);
@@ -24,9 +25,11 @@ static SoapySDR::KwargsList findIConnection(const SoapySDR::Kwargs &matchArgs)
 
 		xtrxArgs["driver"] = "xtrx";
 		xtrxArgs["label"] = std::string("XTRX: ") + devs[i].uniqname + " (" + devs[i].speed + ")";
-		results.push_back(xtrxArgs);
+		results2.push_back(xtrxArgs);
+		if (xtrxArgs["dev"] == matchArgs["dev"])
+			results2[i] = results;
 	}
-
+	
     return results;
 }
 

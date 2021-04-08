@@ -302,7 +302,7 @@ int xtrx_discovery(xtrx_device_info_t* devs, size_t maxbuf)
 		strncpy(devs[i].uniqname, lldevs[i].uniqname, sizeof(devs[i].uniqname));
 		strncpy(devs[i].proto, lldevs[i].proto, sizeof(lldevs[i].proto));
 		strncpy(devs[i].speed, lldevs[i].busspeed, sizeof(lldevs[i].busspeed));
-		strncpy(devs[i].serial, "", sizeof(devs[i].serial)); // TODO
+		strncpy(devs[i].serial, devs[i].uniqname, sizeof(devs[i].serial)); // TODO
 		strncpy(devs[i].devid, lldevs[i].addr, sizeof(devs[i].devid));
 	}
 	return res;
